@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>USA Player Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  />
+  <style>
+    #map {
+      height: 90vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h2>USA Player Map - School/Club Locations</h2>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('map').setView([39.5, -98.35], 4); // Center of USA
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+    }).addTo(map);
+
+    // Player data with approximate lat/lng for each school/club
+    const players = [
+      { name: "Caroline Birkel", pos: "GK", team: "St. Louis Scott Gallagher", lat: 38.627, lng: -90.199 },
+      { name: "Mackenzie Gress", pos: "GK", team: "Penn State", lat: 40.798, lng: -77.860 },
+      { name: "Teagan Wy", pos: "GK", team: "University of California", lat: 37.871, lng: -122.273 },
+      { name: "Jordyn Bugg", pos: "D", team: "Seattle Reign", lat: 47.606, lng: -122.332 },
+      { name: "Elise Evans", pos: "D", team: "Stanford", lat: 37.427, lng: -122.169 },
+      { name: "Heather Gilcrest", pos: "D", team: "Florida State", lat: 30.440, lng: -84.286 },
+      { name: "Savy King", pos: "D", team: "Bay FC", lat: 37.774, lng: -122.419 },
+      { name: "Leah Klenke", pos: "D", team: "Notre Dame", lat: 41.703, lng: -86.238 },
+      { name: "Gisele Thompson", pos: "D", team: "Angel City FC", lat: 34.052, lng: -118.244 },
+      { name: "Sam Courtwright", pos: "M", team: "Texas Tech", lat: 33.584, lng: -101.874 },
+      { name: "Claire Hutton", pos: "M", team: "Kansas City Current", lat: 39.099, lng: -94.578 },
+      { name: "Riley Jackson", pos: "M", team: "North Carolina Courage", lat: 35.779, lng: -78.638 },
+      { name: "Ally Lemos", pos: "M", team: "Orlando Pride", lat: 28.538, lng: -81.379 },
+      { name: "Yuna McCormack", pos: "M", team: "Virginia", lat: 38.033, lng: -78.508 },
+      { name: "Taylor Suarez", pos: "M", team: "Florida State", lat: 30.440, lng: -84.286 },
+      { name: "Emeri Adames", pos: "F", team: "Seattle Reign", lat: 47.606, lng: -122.332 },
+      { name: "Maddie Dahlien", pos: "F", team: "UNC", lat: 35.904, lng: -79.046 },
+      { name: "Jordynn Dudley", pos: "F", team: "Florida State", lat: 30.440, lng: -84.286 },
+      { name: "Giana Riley", pos: "F", team: "Florida State", lat: 30.440, lng: -84.286 },
+      { name: "Ally Sentnor", pos: "F", team: "Utah Royals", lat: 40.760, lng: -111.891 },
+      { name: "Pietra Tordin", pos: "F", team: "Princeton", lat: 40.343, lng: -74.655 },
+    ];
+
+    players.forEach(p => {
+      L.marker([p.lat, p.lng])
+        .addTo(map)
+        .bindPopup(`<strong>${p.name}</strong><br>Position: ${p.pos}<br>Team: ${p.team}`);
+    });
+  </script>
+</body>
+</html>
